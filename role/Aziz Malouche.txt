@@ -1,0 +1,1 @@
+Aziz worked on the development of the entity relationship diagram for both phase 2 and phase 3, alongside the relational schema diagram. He also populated the several databases for the sql database example populations. 
