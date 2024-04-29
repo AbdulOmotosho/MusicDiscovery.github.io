@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Platform Management</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        button[type="submit"][value^="Delete"] {
+            background-color: #f44336;
+        }
+        button[type="submit"][value^="Delete"]:hover {
+            background-color: #ff3333;
+        }
+        button[type="logout"] {
+            background-color: transparent; /* Clear background */
+            border: 1px solid #4CAF50; /* Add border */
+            color: #4CAF50; /* Set text color */
+            text-decoration: underline; /* Add underline */
+            padding: 9px 19px; /* Adjust padding */
+        }
+        button[type="logout"]:hover {
+            background-color: transparent; /* Clear background */
+            border-color: #45a049; /* Change border color on hover */
+        }
+    </style>
+</head>
+<body>
+<form action="/logout" method="post">
+    <button type="logout">Logout</button>
+</form>
+
+<h2>Enter Account Information</h2>
+<form action="/submit_account_info" method="post" onsubmit="setArtistValue()">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+    <div>
+        <label for="phone_number">Phone Number:</label>
+        <input type="tel" id="phone_number" name="phone_number" required>
+    </div>
+    <div>
+        <label for="artist">Artist:</label>
+        <input type="tel" id="artist" name="artist">
+    </div>
+    <div>
+        <button type="submit">Submit New Account</button>
+    </div>
+</form>
+
+<script>
+    function setArtistValue() {
+        var artistInput = document.getElementById("artist");
+        if (artistInput.value.trim() === "") {
+            artistInput.value = "NULL";
+        }
+    }
+</script>
+<h2>View Table</h2>
+<form action="/view_table" method="post">
+    <label for="table_name">Select Table:</label>
+    <select id="table_name" name="table_name">
+        <option value="Account">Account</option>
+        <option value="Listener">Listener</option>
+        <option value="Song">Song</option>
+        <option value="Album">Album</option>
+        <option value="Playlist">Playlist</option>
+        <option value="Artist">Artist</option>
+    </select>
+    <button type="submit">View Table</button>
+</form>
+{% block content %}
+{% endblock %}
+
+<h2>Delete Account</h2>
+<form action="/delete_account" method="post">
+     <div>
+        <label for="delete_username">Username:</label>
+        <input type="text" id="delete_username" name="delete_username" required>
+    </div>
+    <div>
+        <label for="delete_password">Password:</label>
+        <input type="password" id="delete_password" name="delete_password" required>
+    </div>
+    <div>
+        <button type="delete account">Delete Account</button>
+    </div>
+</form>
+
+<h2>Update Account Password</h2>
+<form action="/update_account_password" method="post">
+    <div>
+        <label for="update_username">Username:</label>
+        <input type="text" id="update_username" name="update_username" required>
+    </div>
+    <div>
+        <label for="old_password">Old Password:</label>
+        <input type="password" id="old_password" name="old_password" required>
+    </div>
+    <div>
+        <label for="update_password">New Password:</label>
+        <input type="password" id="update_password" name="update_password" required>
+    </div>
+    <div>
+        <button type="submit">Update Password</button>
+    </div>
+</form>
+
+
+<h2>Update Account Email</h2>
+<form action="/update_account_email" method="post">
+    <div>
+        <label for="update_username">Username:</label>
+        <input type="text" id="update_username2" name="update_username" required>
+    </div>
+    <div>
+        <label for="update_email">Email:</label>
+        <input type="email" id="update_email" name="update_email" required>
+    </div>
+    <div>
+        <button type="submit">Update Email</button>
+    </div>
+</form>
+
+<h2>Update Account Phone Number</h2>
+<form action="/update_account_phone_number" method="post">
+    <div>
+        <label for="update_username">Username:</label>
+        <input type="text" id="update_username3" name="update_username" required>
+    </div>
+    <div>
+        <label for="update_phone_number">Phone Number:</label>
+        <input type="tel" id="update_phone_number" name="update_phone_number" required>
+    </div>
+    <div>
+        <button type="submit">Update Phone Number</button>
+    </div>
+</form>
+
+<h2>Update Account Artist Name</h2>
+<form action="/update_account_artist" method="post" onsubmit="setArtistValue()">
+    <div>
+        <label for="update_username">Username:</label>
+        <input type="text" id="update_username4" name="update_username" required>
+    </div>
+    <div>
+        <label for="update_artist">Artist:</label>
+        <input type="tel" id="update_artist" name="update_artist" required>
+    </div>
+    <div>
+        <button type="submit">Update Artist</button>
+    </div>
+</form>
+
+<h2>Add Artist</h2>
+<form action="/add_artist" method="post">
+    <input type="text" name="account" placeholder="Account" required>
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="text" name="social_media_links" placeholder="Social Media Links" required>
+    <button type="submit">Add Artist</button>
+</form>
+
+<h2>Delete Artist</h2>
+<form action="/delete_artist" method="post">
+    <input type="number" name="artist_id" placeholder="Enter Artist ID">
+     <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <button type="submit" value="Delete Artist">Delete Artist</button>
+</form>
+
+<h2>Update Artist</h2>
+<form action="/update_artist" method="post">
+    <input type="number" name="artist_id" placeholder="Enter Artist ID">
+    <input type="text" name="name" placeholder="Enter New Artist Name">
+    <button type="submit" value="Update Artist">Update Artist</button>
+</form>
+
+
+<h2>Add Listener</h2>
+<form action="/add_listener" method="post">
+    <div>
+        <label for="listener_phone_number">Phone Number:</label>
+        <input type="tel" id="listener_phone_number" name="listener_phone_number" required>
+    </div>
+    <div>
+        <label for="listener_account_name">Account Name:</label>
+        <input type="text" id="listener_account_name" name="listener_account_name" required>
+    </div>
+    <div>
+        <label for="listener_full_name">Full Name:</label>
+        <input type="text" id="listener_full_name" name="listener_full_name" required>
+    </div>
+    <div>
+        <button type="submit">Add Listener</button>
+    </div>
+</form>
+
+<h2>Delete Listener</h2>
+<form action="/delete_listener" method="post">
+    <input type="text" name="phone_number" placeholder="Enter Phone Number">
+    <button type="submit" value="Delete Listener">Delete Listener</button>
+</form>
+
+<h2>Update Listener</h2>
+<form action="/update_listener" method="post">
+    <input type="text" name="phone_number" placeholder="Enter Phone Number">
+    <input type="text" name="full_name" placeholder="Enter Full Name">
+    <button type="submit" value="Update Listener">Update Listener</button>
+</form>
+
+<h2>Add Song</h2>
+<form action="/add_song" method="post">
+    <input type="text" name="artist_id" placeholder="Artist ID" required>
+    <input type="text" name="genre" placeholder="Genre" required>
+    <input type="text" name="title" placeholder="Title" required>
+    <input type="number" name="star_rating" placeholder="Star Rating" required>
+    <input type="number" name="runtime" placeholder="Runtime" required>
+    <button type="submit">Add Song</button>
+</form>
+
+<h2>Delete Song</h2>
+<form action="/delete_song" method="post">
+    <input type="number" name="song_id" placeholder="Enter Song ID">
+    <button type="submit" value="Delete Song">Delete Song</button>
+</form>
+
+<h2>Update Song</h2>
+<form action="/update_song" method="post">
+    <input type="number" name="song_id" placeholder="Enter Song ID">
+    <input type="text" name="title" placeholder="Enter New Song Title">
+    <input type="text" name="artist" placeholder="Enter New Artist Name">
+    <button type="submit" value="Update Song">Update Song</button>
+</form>
+
+<h2>Add Album</h2>
+<form action="/add_album" method="post">
+    <div>
+        <label for="artist_username">Artist Username:</label>
+        <input type="text" id="artist_username" name="artist_username" required>
+    </div>
+    <div>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+    </div>
+    <div>
+        <label for="star_rating">Star Rating:</label>
+        <input type="number" id="star_rating" name="star_rating" required>
+    </div>
+    <div>
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" required>
+    </div>
+    <div>
+        <button type="submit">Add Album</button>
+    </div>
+</form>
+
+<h2>Delete Album</h2>
+<form action="/delete_album" method="post">
+    <input type="number" name="album_id" placeholder="Enter Album ID">
+   <button type="submit" value="Delete Album">Delete Album</button>
+</form>
+
+<h2>Update Album</h2>
+<form action="/update_album" method="post">
+    <input type="number" name="album_id" placeholder="Enter Album ID">
+    <input type="text" name="title" placeholder="Enter New Album Title">
+    <button type="submit" value="Update Album">Update Album</button>
+</form>
+
+<h2>Add Playlist</h2>
+<form action="/add_playlist" method="post">
+    <input type="text" name="phone_number" placeholder="Phone Number" required>
+    <input type="text" name="playlist_name" placeholder="Playlist Name" required>
+    <input type="number" name="star_rating" placeholder="Star Rating" required>
+    <input type="number" name="playlist_length" placeholder="Playlist Length" required>
+    <input type="number" name="playlist_runtime" placeholder="Playlist Runtime" required>
+    <select name="visibility" required>
+        <option value="private">Private</option>
+        <option value="global">Global</option>
+    </select>
+    <button type="submit">Add Playlist</button>
+</form>
+
+<h2>Delete Playlist</h2>
+<form action="/delete_playlist" method="post">
+    <input type="number" name="playlist_id" placeholder="Enter Playlist ID">
+    <button type="submit" value="Delete Playlist">Delete Playlist</button>
+</form>
+
+<h2>Update Playlist</h2>
+<form action="/update_playlist" method="post">
+    <input type="number" name="playlist_id" placeholder="Enter Playlist ID">
+    <input type="text" name="name" placeholder="Enter New Playlist Name">
+    <button type="submit" value="Update Playlist">Update Playlist</button>
+</form>
+
+
+</body>
+</html>
