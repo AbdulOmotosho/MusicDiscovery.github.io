@@ -1,0 +1,3 @@
+Involved in completing all phases. 
+Had the final database and server on his laptop.
+Heavily involved in implementing the functionality and connectedness between the frontend web page and back end database on mysql.
