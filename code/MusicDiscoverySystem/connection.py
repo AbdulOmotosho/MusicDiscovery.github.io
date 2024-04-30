@@ -7,7 +7,7 @@ app.secret_key = 'secret5214'
 config = {
     'host': 'localhost',
     'user': 'root',
-    'password': 'Nik2608.MySQL',
+    'password': '*************',
     'database': 'artistdiscoverysystem'
 }
 
