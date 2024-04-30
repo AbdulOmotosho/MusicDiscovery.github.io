@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Platform Management</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            background-color: #2e3047;
+            background: linear-gradient(135deg, #2e3047, #3bba9c);
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="delete account"] {
+            background-color: #f44336;
+        }
+        button[type="submit"]:hover,
+        button[type="delete account"]:hover {
+            background-color: #45a049;
+        }
+        /* Additional styles for the logout button */
+        button[type="logout"] {
+            background-color: transparent; /* Clear background */
+            border: 1px solid #4CAF50; /* Add border */
+            color: #4CAF50; /* Set text color */
+            text-decoration: underline; /* Add underline */
+            padding: 9px 19px; /* Adjust padding */
+        }
+        button[type="logout"]:hover {
+            background-color: transparent; /* Clear background */
+            border-color: #45a049; /* Change border color on hover */
+        }
+    </style>
+</head>
+<h2>View Table</h2>
+<form action="/view_table" method="post">
+    <label for="table_name">Select Table:</label>
+    <select id="table_name" name="table_name">
+        <option value="Account">Account</option>
+        <option value="Listener">Listener</option>
+        <option value="Song">Song</option>
+        <option value="Album">Album</option>
+        <option value="Playlist">Playlist</option>
+        <option value="Artist">Artist</option>
+
+        <!-- Add more options as needed -->
+    </select>
+    <button type="submit">View Table</button>
+</form>
+
+<!-- Add logout button -->
+<form action="/logout" method="post">
+    <button type="logout">Logout</button>
+</form>
+{% block content %}
+{% endblock %}

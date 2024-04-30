@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: url("https://www.icmp.ac.uk/sites/default/files/styles/page_background/public/slider-image/electronic-music-production-degree-course.jpg?itok=5N-9Hrg5"); /* Add your background image URL here */
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        .login-container {
+            max-width: 350px;
+            margin: 100px auto;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .spotify-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .spotify-logo img {
+            width: 100px;
+        }
+
+        .login-form input,
+        .login-form select {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 4px;
+            background-color: #6A5ACD;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-form button:hover {
+            background-color: #1db954;
+        }
+
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .forgot-password a {
+            color: #999;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="spotify-logo">
+            <img src="https://musicdiscoverycenter.org/wp-content/uploads/2021/01/MUSIC-DISOVERY-CENTER-LOGO-COLOR-FINAL-2.png" alt="Spotify Logo">
+        </div>
+        {% if error %}
+            <p class="error-message">{{ error }}</p>
+        {% endif %}
+
+        <form class="login-form" action="/login" method="post">
+
+            <div>
+
+                <label for="username">Username:</label>
+
+                <input type="text" id="username" name="username" required>
+
+            </div>
+
+            <div>
+
+                <label for="password">Password:</label>
+
+                <input type="password" id="password" name="password" required>
+
+            </div>
+
+            <div>
+
+                <label for="role">Role:</label>
+
+                <select id="role" name="role" style="width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;">
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                </select>
+
+            </div>
+
+            <div class="forgot-password" >
+                <a href="#">Forgot your password?</a>
+            </div>
+
+            <div>
+
+                <button type="submit">Login</button>
+
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>
