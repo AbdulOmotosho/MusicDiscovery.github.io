@@ -1,0 +1,3 @@
+Create tables in MySQL database and populated them with sample data
+Created basic UI to input data into the database
+Analyzed and created statistical reports based on the database
